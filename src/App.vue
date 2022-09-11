@@ -5,7 +5,19 @@
   0. 디자인해두고
   1. UI의 현재상태를 데이터로 만들어둠
   2. 데이터에 따라 UI 가 어떻게 보일지 작성 (모달창 켜는 스위치) -->
-  <ModalChang></ModalChang>
+
+  <!-- props로 자식에게 데이터 보내는 법 -->
+  <!-- 1. 밑의 데이터 골라서 보내기
+  2. v-bind or : 쓰기
+  2-1. ex) 자식:데이터="데이터"
+  3. 자식 component 에서 수신받을 코드 작성
+  3-1 ex) export default 에 
+  props : {
+    데이터 이름 : 데이의 형식 Array or Object or Number
+  } -->
+
+
+  <ModalChang :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니"></ModalChang>
 
   <div class="menu">
     <!-- v-for="작명 in 몇번 반복(숫자)" :key="작명" -->
@@ -24,16 +36,17 @@
   <!-- 반복적으로 출현할 부분만 컴포넌트 화 권장 -->
   <DiscountPrice></DiscountPrice>
 
-
-  <!-- v-for="(작명,i) in ??" :key="작명"-->
-  <!-- i -> 반복문 돌리면서 0-1-2-3 이렇게 증가하는 정수 -->
-  <div v-for="(a, i) in 원룸들" :key="i">
-    <!-- 원룸들[i] or 작명한 이름-> a 로 작성 해도 됨 -->
+  <!-- <div v-for="(a, i) in 원룸들" :key="i">
     <img :src="a.image" class="room-img">
-    <!-- 제목을 누를 때 마다 각각의 정보에 맞는 모달창이 열리려면 누른거 = i 추가 -->
     <h4 @click="모달창열렸니 = true; 누른거 = i">{{a.title}}</h4>
     <p>{{a.price}}원</p>
-  </div>
+  </div> -->
+  <CardList :원룸="원룸들[i]" v-for="(작명,i) in 원룸들" :key="작명"></CardList>
+  <!-- <CardList :원룸="원룸들[1]"></CardList>
+  <CardList :원룸="원룸들[2]"></CardList>
+  <CardList :원룸="원룸들[3]"></CardList>
+  <CardList :원룸="원룸들[4]"></CardList>
+  <CardList :원룸="원룸들[5]"></CardList> -->
 
   
 </template>
@@ -45,6 +58,7 @@
 import data from './assets/oneroom.js';
 import DiscountPrice from './DiscountPrice.vue';
 import ModalChang from './ModalChang.vue';
+import CardList from './CardList.vue';
 
 export default {
   name: 'App',
@@ -78,7 +92,8 @@ export default {
     // 왼쪽은 언제나 자유작명
     // 왼쪽 오른쪽 이름이 같으면 Discount 이렇게만 써도 됨
     DiscountPrice : DiscountPrice,
-    ModalChang : ModalChang
+    ModalChang : ModalChang,
+    CardList : CardList,
   }
 }
 </script>
