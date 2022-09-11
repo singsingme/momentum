@@ -17,7 +17,7 @@
   } -->
 
 
-  <ModalChang :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니"></ModalChang>
+  <ModalChang @closeModal="모달창열렸니 = false" :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니"></ModalChang>
 
   <div class="menu">
     <!-- v-for="작명 in 몇번 반복(숫자)" :key="작명" -->
@@ -118,7 +118,7 @@ div {
   position: fixed; padding: 20px;
 }
 .white-bg {
-  width: 100%; background: white;
+  width: 50%; background: white;
   border-radius: 8px;
   padding: 20px;
 } 
@@ -133,8 +133,9 @@ div {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
+#app img {width: 100%;}
 
 .menu {
   background: darkslateblue;
