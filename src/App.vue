@@ -41,12 +41,10 @@
     <h4 @click="모달창열렸니 = true; 누른거 = i">{{a.title}}</h4>
     <p>{{a.price}}원</p>
   </div> -->
-  <CardList :원룸="원룸들[i]" v-for="(작명,i) in 원룸들" :key="작명"></CardList>
-  <!-- <CardList :원룸="원룸들[1]"></CardList>
-  <CardList :원룸="원룸들[2]"></CardList>
-  <CardList :원룸="원룸들[3]"></CardList>
-  <CardList :원룸="원룸들[4]"></CardList>
-  <CardList :원룸="원룸들[5]"></CardList> -->
+
+  <!-- 부모가 메세지 수신할 땐 @작명한거="" -->
+  <CardList @openModal="모달창열렸니 = true; 누른거 = $event" :원룸="원룸들[i]" v-for="(작명,i) in 원룸들" :key="작명"></CardList>
+
 
   
 </template>
