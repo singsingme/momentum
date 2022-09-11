@@ -5,19 +5,7 @@
   0. 디자인해두고
   1. UI의 현재상태를 데이터로 만들어둠
   2. 데이터에 따라 UI 가 어떻게 보일지 작성 (모달창 켜는 스위치) -->
-  <!-- ------------모달창------------ -->
-  <div class="black-bg" v-if="모달창열렸니 == true">
-    <div class="white-bg">
-      <!-- HTML 태그안의 속성 데이터 바인딩은 :어쩌구
-      HTML 태그안의 내용 데이터 바인딩은 {{어쩌구}} -->
-      <!-- []안에 들어갈 데이터가 몇번 째 인지 하드코딩해야 되기 때문에 data에 누른거 라는 데이터를 만들어 줌 -->
-      <img :src="원룸들[누른거].image" style="whidth:100%">
-      <h4>{{원룸들[누른거].title}}</h4>
-      <p>{{원룸들[누른거].content}}</p>
-      <p>{{원룸들[누른거].price}} 원</p>
-      <button @click="모달창열렸니 = false">닫기</button>
-    </div>
-  </div>
+  <ModalChang></ModalChang>
 
   <div class="menu">
     <!-- v-for="작명 in 몇번 반복(숫자)" :key="작명" -->
@@ -26,9 +14,15 @@
   </div>
 
 
-  <div class="discuont">
+  <!-- <div class="discuont">
     <h4>지금 결제 하면 20% 할인</h4>
-  </div>
+  </div> -->
+  <!-- --------축약해둔 컴포넌트 쓰는 법--------
+  1. vue 파일 import해오고
+  2. 컴포넌트에 등록하고
+  3. 쓰기 -->
+  <!-- 반복적으로 출현할 부분만 컴포넌트 화 권장 -->
+  <DiscountPrice></DiscountPrice>
 
 
   <!-- v-for="(작명,i) in ??" :key="작명"-->
@@ -49,7 +43,8 @@
 // export default 한 것은 자유롭게 작명 가능
 // import 작명 from ./경로
 import data from './assets/oneroom.js';
-
+import DiscountPrice from './DiscountPrice.vue';
+import ModalChang from './ModalChang.vue';
 
 export default {
   name: 'App',
@@ -80,7 +75,10 @@ export default {
     }
   },
   components: {
-
+    // 왼쪽은 언제나 자유작명
+    // 왼쪽 오른쪽 이름이 같으면 Discount 이렇게만 써도 됨
+    DiscountPrice : DiscountPrice,
+    ModalChang : ModalChang
   }
 }
 </script>
@@ -94,12 +92,12 @@ div {
   box-sizing: border-box;
 }
 
-.discount {
+/* .discount {
   background: #eee;
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
-}
+} */
 
 .black-bg {
   width: 100%; height:100%;
