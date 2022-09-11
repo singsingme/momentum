@@ -1,3 +1,6 @@
+
+// expoty drfalut-> 어떤 변수 를 내보내겠습니다~ 라는 뜻
+
 export default [{
     id : 0,
     title: "Sinrim station 30 meters away",
