@@ -15,9 +15,17 @@
   props : {
     데이터 이름 : 데이의 형식 Array or Object or Number
   } -->
+  
+
+  <!-- end 라는 클래스 명이 true 일때만 적용 -->
+  <!-- <div class="stater" :class="{end : 모달창열렸니}">
+    <ModalChang @closeModal="모달창열렸니 = false" :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니"></ModalChang>
+  </div> -->
 
 
-  <ModalChang @closeModal="모달창열렸니 = false" :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니"></ModalChang>
+  <transition name="fade">
+    <ModalChang @closeModal="모달창열렸니 = false" :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니"></ModalChang>
+  </transition>
 
   <div class="menu">
     <!-- v-for="작명 in 몇번 반복(숫자)" :key="작명" -->
@@ -97,6 +105,35 @@ export default {
 </script>
 
 <style>
+/* <등장애니메이션> */
+/* 시작 */
+.fade-enter-from {
+  opacity: 0;
+}
+/* transition */
+.fade-enter-active {
+  transition: all 1s;
+}
+/* 끝 */
+.fade-enter-to {
+  opacity: 1;
+}
+/* <퇴장애니메이션> */
+/* 중간에 leave로 바꿔주기 */
+
+
+/* css로 애니메이션 주려면
+1. 시작전 class 명
+2. 애니메이션 끝난 후 class 명
+3. 그리고 원할 때 2번 class 명 부착 */
+.stater {
+  opacity: 0;
+  transition: all 1s;
+}
+.end {
+  opacity: 1;
+}
+
 
 body {
   margin : 0;
