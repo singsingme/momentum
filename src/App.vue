@@ -42,7 +42,13 @@
   2. 컴포넌트에 등록하고
   3. 쓰기 -->
   <!-- 반복적으로 출현할 부분만 컴포넌트 화 권장 -->
-  <DiscountPrice></DiscountPrice>
+  <DiscountPrice v-if="showDiscount == true"></DiscountPrice>
+
+  <!-- 가격순 정렬 -->
+  <button @click="priceSort">가격순정렬</button>
+  <!-- 되돌리기/가격순 정렬 됐던게 원상태로 복구 -->
+  <button @click="sortBack">되돌리기</button>
+
 
   <!-- <div v-for="(a, i) in 원룸들" :key="i">
     <img :src="a.image" class="room-img">
@@ -66,10 +72,13 @@ import DiscountPrice from './DiscountPrice.vue';
 import ModalChang from './ModalChang.vue';
 import CardList from './CardList.vue';
 
+
 export default {
   name: 'App',
   data(){
     return {
+      showDiscount : true,
+      원룸들오리지널 : [...data],
       //사용자가 몇 번(number)을 눌렀는지 이기 때문에 숫자가 나음
       누른거 : 0,
       원룸들 : data,
@@ -92,8 +101,25 @@ export default {
   methods : {
     increase(){
       this.신고수 += 1;
-    }
+    },
+    priceSort(){
+      this.원룸들.sort(function(a,b){
+        return a.price - b.price
+      })
+    },
+    sortBack(){
+      this. 원룸들 = [...this.원룸들오리지널];
+    },
   },
+
+
+  mounted(){
+    setTimeout(()=>{
+      this.showDiscount = false
+    }, 2000);
+  },
+
+
   components: {
     // 왼쪽은 언제나 자유작명
     // 왼쪽 오른쪽 이름이 같으면 Discount 이렇게만 써도 됨
